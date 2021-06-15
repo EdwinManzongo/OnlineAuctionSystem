@@ -12,11 +12,12 @@ if(isset($_POST['SubmitTransfer'])){
 $paynow = new Paynow\Payments\Paynow(
     '9713',
     '09c5be39-7a11-47ae-8ada-a3e2488ad40b',
-    'http://localhost/Online-Auction-System/transfer_payment.php',
-    'http://localhost/Online-Auction-System/tranfer_payment.php'
+    'http://localhost/Online-Auction-System/clintpay_success.php',
+    'http://localhost/Online-Auction-System/clintpay_success.php'
 );
 
-
+// 'http://localhost/Online-Auction-System/clintpay_success.php?inv='.$InvoiceNumber.'&ItemID='.$PaymentAmount.'&buyer='.$PaymentEmail.'',
+// 'http://localhost/Online-Auction-System/clintpay_success.php?inv='.$InvoiceNumber.''
 $payment = $paynow->createPayment($InvoiceNumber, $PaymentEmail);
 
 
@@ -28,11 +29,9 @@ $payment->add($InvoiceNumber, $PaymentAmount);
 // added to a payment
 $payment->setDescription("Transfer from Holding Account");
 
-
 // Initiate a Payment 
 $response = $paynow->send($payment);
 // var_dump($response);
-
 
 ?>
 <!DOCTYPE html>
